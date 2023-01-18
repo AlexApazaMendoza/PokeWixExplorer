@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "670375367378",
+    "project_id": "pokewixexplorer",
+    "storage_bucket": "pokewixexplorer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:670375367378:android:ac4186fc748ff2073f130b",
+        "android_client_info": {
+          "package_name": "com.alpamedev.pokewixexplorer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "670375367378-s9vqmruli1mkpaoib038nmo29kgv0lmo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.alpamedev.pokewixexplorer",
+            "certificate_hash": "aeffe91706b81e91b1bfc3fa0202071552d8f5a8"
+          }
+        },
+        {
+          "client_id": "670375367378-02rri4962obfnubhena9h68ddfse749m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYa8Kg39n-nyXJtQs7a5IeSOwhLCyTo0I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "670375367378-02rri4962obfnubhena9h68ddfse749m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
