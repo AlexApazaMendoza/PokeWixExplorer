@@ -10,16 +10,16 @@ android {
     namespace 'com.alpamedev.pokewixexplorer'
     compileSdk 33
 
-    /*signingConfigs {
+    signingConfigs {
         release {
-            storeFile file('D:\\Documentos\\PlayStore\\PokemonGuideApp\\keys\\pokemon_guide_app_key.jks')
+            storeFile file('D:\\Documentos\\PlayStore\\PokeWixExplorer\\keys\\poke_wix_explorer_key.jks')
             keyAlias 'key0'
-            storePassword 'adpga11'
-            keyPassword 'adpga11'
+            storePassword 'pwxe11'
+            keyPassword 'pwxe11'
             v1SigningEnabled true
             v2SigningEnabled true
         }
-    }*/
+    }
 
     defaultConfig {
         applicationId "com.alpamedev.pokewixexplorer"
@@ -37,7 +37,7 @@ android {
             resValue 'string', 'AD_UNIT_ID_MAIN_BANNER', '"ca-app-pub-3940256099942544/6300978111"'
         }
         release {
-            //signingConfig signingConfigs.release
+            signingConfig signingConfigs.release
             manifestPlaceholders = [ ADMOB_APP_ID: "ca-app-pub-5307975559947536~5625383692" ]
             resValue 'string', 'AD_UNIT_ID_MAIN_BANNER', '"ca-app-pub-5307975559947536/5925616652"'
             minifyEnabled false

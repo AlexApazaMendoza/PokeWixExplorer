@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "670375367378-1vnnu1n96hek77csar4hbc1elqlchofi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.alpamedev.pokewixexplorer",
+            "certificate_hash": "6757e390387231fe12dc16b76199ba8834db93db"
+          }
+        },
+        {
           "client_id": "670375367378-s9vqmruli1mkpaoib038nmo29kgv0lmo.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
