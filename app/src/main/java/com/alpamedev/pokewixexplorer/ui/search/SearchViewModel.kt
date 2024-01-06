@@ -25,9 +25,11 @@ class SearchViewModel @Inject constructor(private val pokemonUseCase: GetPokemon
         throwable.printStackTrace()
     }
 
+    private val coroutine = CoroutineScope(Dispatchers.IO+coroutineExceptionHandler)
+
     fun searchPokemon(namePokemon: String){
         _showProgressBar.value = true
-        CoroutineScope(Dispatchers.IO+coroutineExceptionHandler).launch{
+        coroutine.launch{
             _pokemon.postValue(pokemonUseCase.getPokemon(namePokemon))
             _showProgressBar.postValue(false)
         }

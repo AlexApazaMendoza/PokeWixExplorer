@@ -23,30 +23,25 @@ class HomeViewModel @Inject constructor(
     private val _generationList = MutableLiveData<MutableList<Generation>>(mutableListOf())
     val generationList: LiveData<MutableList<Generation>> = _generationList
 
-    var job: Job? = null
-
     private val coroutineExceptionHandler = CoroutineExceptionHandler{ _, throwable ->
         throwable.printStackTrace()
     }
 
-    init {
-        _pokemonList.value = mutableListOf()
-    }
+    private val coroutine = CoroutineScope(Dispatchers.IO+coroutineExceptionHandler)
 
     fun getPokemons(){
-        CoroutineScope(Dispatchers.IO+coroutineExceptionHandler).launch {
-            _generationList.postValue(generationUseCase.getGenerationList().toMutableList())
-            job = CoroutineScope(Dispatchers.IO+coroutineExceptionHandler).launch{
-                _generationList.value?.let {
-                    val generation = generationUseCase.getGeneration(it.first().name ?: "")
-                    generation?.let { gen ->
-                        val pokemonData = mutableListOf<Pokemon>()
-                        gen.pokemonSpecies.forEach { spe ->
-                            pokemonUseCase.getPokemon(spe.name)?.let { poke ->
-                                pokemonData.add(poke)
-                            }
+        coroutine.launch {
+            val generations = generationUseCase.getGenerationList().toMutableList()
+            _generationList.postValue(generations)
+            generations.let {
+                val generation = generationUseCase.getGeneration(it.first().name ?: "")
+                generation?.let { value ->
+                    val pokemonData = mutableListOf<Pokemon>()
+                    value.pokemonSpecies.forEach { specie ->
+                        pokemonUseCase.getPokemon(specie.name)?.let { pokemon ->
+                            pokemonData.add(pokemon)
+                            _pokemonList.postValue(pokemonData)
                         }
-                        _pokemonList.postValue(pokemonData)
                     }
                 }
             }
@@ -54,26 +49,23 @@ class HomeViewModel @Inject constructor(
     }
 
     fun onItemGenerationClick(generation: Generation){
-        if(job != null){
-            if(job!!.isActive){
-                job!!.cancel()
-                job = null
-            }
+        if(coroutine.isActive){
+            coroutine.coroutineContext.cancelChildren()
         }
-        job = CoroutineScope(Dispatchers.IO+coroutineExceptionHandler).launch{
+        coroutine.launch {
             getPokemonDataListByGeneration(generation)
         }
     }
 
     private suspend fun getPokemonDataListByGeneration(generation: Generation) {
-        generationUseCase.getGeneration(generation.name ?: "")?.let { gen ->
+        generationUseCase.getGeneration(generation.name ?: "")?.let {
             val pokemonData = mutableListOf<Pokemon>()
-            gen.pokemonSpecies.forEach { spe ->
-                pokemonUseCase.getPokemon(spe.name)?.let { poke ->
-                    pokemonData.add(poke)
+            it.pokemonSpecies.forEach { specie ->
+                pokemonUseCase.getPokemon(specie.name)?.let { pokemon ->
+                    pokemonData.add(pokemon)
+                    _pokemonList.postValue(pokemonData)
                 }
             }
-            _pokemonList.postValue(pokemonData)
         }
     }
 
