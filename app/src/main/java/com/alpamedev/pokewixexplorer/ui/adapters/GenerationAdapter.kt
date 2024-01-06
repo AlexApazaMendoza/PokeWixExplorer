@@ -1,16 +1,16 @@
-package com.alpamedev.pokewixexplorer.adapters
+package com.alpamedev.pokewixexplorer.ui.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.alpamedev.pokewixexplorer.OnClickListener
+import com.alpamedev.domain.generation.Generation
+import com.alpamedev.pokewixexplorer.ui.listeners.OnClickListener
 import com.alpamedev.pokewixexplorer.R
 import com.alpamedev.pokewixexplorer.databinding.GenerationRowItemBinding
-import com.alpamedev.pokewixexplorer.models.ResultGeneration
 
-class GenerationAdapter(private val dataSet:MutableList<ResultGeneration>, private var listener: OnClickListener):
+class GenerationAdapter(private val dataSet:MutableList<Generation>, private var listener: OnClickListener):
     RecyclerView.Adapter<GenerationAdapter.ViewHolder>() {
 
     private lateinit var mContext: Context
@@ -18,7 +18,7 @@ class GenerationAdapter(private val dataSet:MutableList<ResultGeneration>, priva
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val mBinding = GenerationRowItemBinding.bind(view)
 
-        fun setListener(resultGeneration: ResultGeneration){
+        fun setListener(resultGeneration: Generation){
             mBinding.root.setOnClickListener {
                 listener.onItemGenerationClick(resultGeneration)
             }

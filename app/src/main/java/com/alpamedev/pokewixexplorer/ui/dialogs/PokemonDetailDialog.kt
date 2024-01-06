@@ -1,4 +1,4 @@
-package com.alpamedev.pokewixexplorer.dialogs
+package com.alpamedev.pokewixexplorer.ui.dialogs
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -7,17 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.GridLayoutManager
+import com.alpamedev.domain.pokemon.Pokemon
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.alpamedev.pokewixexplorer.R
-import com.alpamedev.pokewixexplorer.adapters.PokemonTypeAdapter
+import com.alpamedev.pokewixexplorer.ui.adapters.PokemonTypeAdapter
 import com.alpamedev.pokewixexplorer.databinding.PokemonDetailDialogBinding
-import com.alpamedev.pokewixexplorer.models.PokemonResponse
 import com.alpamedev.pokewixexplorer.toHeightPokemonDisplay
 import com.alpamedev.pokewixexplorer.toNamePokemonDisplay
 import com.alpamedev.pokewixexplorer.toWeightPokemonDisplay
 
-class PokemonDetailDialog(var pokemon: PokemonResponse): DialogFragment() {
+class PokemonDetailDialog(var pokemon: Pokemon): DialogFragment() {
 
     private lateinit var mBinding : PokemonDetailDialogBinding
     private lateinit var mPokemonTypeAdapter : PokemonTypeAdapter
@@ -48,7 +48,7 @@ class PokemonDetailDialog(var pokemon: PokemonResponse): DialogFragment() {
             tvWeightPokemon.text = pokemon.weight.toString().toWeightPokemonDisplay()
 
             root.setBackgroundResource(
-                when(pokemon.types.first().type.name){
+                when(pokemon.types.first().name){
                     "steel" -> R.color.color_type_pokemon_steel_light
                     "water" -> R.color.color_type_pokemon_water_light
                     "bug" -> R.color.color_type_pokemon_bug_light

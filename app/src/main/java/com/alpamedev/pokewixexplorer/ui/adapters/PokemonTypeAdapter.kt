@@ -1,15 +1,15 @@
-package com.alpamedev.pokewixexplorer.adapters
+package com.alpamedev.pokewixexplorer.ui.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.alpamedev.domain.pokemon.Type
 import com.alpamedev.pokewixexplorer.R
 import com.alpamedev.pokewixexplorer.databinding.PokemonTypeRowItemBinding
-import com.alpamedev.pokewixexplorer.models.Type
 
-class PokemonTypeAdapter(private val dataSet:MutableList<Type>, )
+class PokemonTypeAdapter(private val dataSet:MutableList<Type>)
     : RecyclerView.Adapter<PokemonTypeAdapter.ViewHolder>() {
 
     private lateinit var mContext: Context
@@ -28,9 +28,9 @@ class PokemonTypeAdapter(private val dataSet:MutableList<Type>, )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder){
-            binding.tvTypePokemonTitle.text = dataSet[position].type.name
+            binding.tvTypePokemonTitle.text = dataSet[position].name
             binding.root.setBackgroundResource(
-                when(dataSet[position].type.name){
+                when(dataSet[position].name){
                     "steel" -> R.color.color_type_pokemon_steel
                     "water" -> R.color.color_type_pokemon_water
                     "bug" -> R.color.color_type_pokemon_bug

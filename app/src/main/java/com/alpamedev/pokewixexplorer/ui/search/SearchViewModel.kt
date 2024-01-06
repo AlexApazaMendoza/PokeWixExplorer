@@ -1,20 +1,19 @@
-package com.alpamedev.pokewixexplorer.search
+package com.alpamedev.pokewixexplorer.ui.search
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.alpamedev.pokewixexplorer.models.PokemonResponse
+import com.alpamedev.domain.pokemon.Pokemon
+import com.alpamedev.usecases.GetPokemonUseCase
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class SearchViewModel:ViewModel() {
+class SearchViewModel(private val pokemonUseCase: GetPokemonUseCase):ViewModel() {
 
-    val interactor: SearchInteractor
-
-    private val _pokemon = MutableLiveData<PokemonResponse?>(null)
-    val pokemon: LiveData<PokemonResponse?> = _pokemon
+    private val _pokemon = MutableLiveData<Pokemon?>(null)
+    val pokemon: LiveData<Pokemon?> = _pokemon
 
     private val _showProgressBar = MutableLiveData<Boolean>(false)
     val showProgressBar : MutableLiveData<Boolean> = _showProgressBar
@@ -23,16 +22,10 @@ class SearchViewModel:ViewModel() {
         throwable.printStackTrace()
     }
 
-    init {
-        interactor = SearchInteractor()
-    }
-
     fun searchPokemon(namePokemon: String){
         _showProgressBar.value = true
         CoroutineScope(Dispatchers.IO+coroutineExceptionHandler).launch{
-            interactor.searchPokemonByName(namePokemon){
-                _pokemon.postValue(it)
-            }
+            _pokemon.postValue(pokemonUseCase.getPokemon(namePokemon))
             _showProgressBar.postValue(false)
         }
     }

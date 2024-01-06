@@ -1,4 +1,4 @@
-package com.alpamedev.pokewixexplorer.search
+package com.alpamedev.pokewixexplorer.ui.search
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,13 +8,13 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.alpamedev.domain.pokemon.Pokemon
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.alpamedev.pokewixexplorer.R
-import com.alpamedev.pokewixexplorer.adapters.PokemonStatAdapter
-import com.alpamedev.pokewixexplorer.adapters.PokemonTypeAdapter
+import com.alpamedev.pokewixexplorer.ui.adapters.PokemonStatAdapter
+import com.alpamedev.pokewixexplorer.ui.adapters.PokemonTypeAdapter
 import com.alpamedev.pokewixexplorer.databinding.FragmentSearchBinding
-import com.alpamedev.pokewixexplorer.models.PokemonResponse
 import com.alpamedev.pokewixexplorer.toHeightPokemonDisplay
 import com.alpamedev.pokewixexplorer.toNamePokemonDisplay
 import com.alpamedev.pokewixexplorer.toWeightPokemonDisplay
@@ -80,7 +80,7 @@ class SearchFragment : Fragment() {
         }
     }
 
-    private fun updatePokemonView(pokemon: PokemonResponse) {
+    private fun updatePokemonView(pokemon: Pokemon) {
         with(mBinding){
             tvNamePokemon.text = pokemon.name.toNamePokemonDisplay()
             orderPokemon.text = "#${pokemon.order.toString().padStart(3,'0')}"
@@ -88,7 +88,7 @@ class SearchFragment : Fragment() {
             tvWeightPokemon.text = pokemon.weight.toString().toWeightPokemonDisplay()
 
             clPokemon.setBackgroundResource(
-                when(pokemon.types.first().type.name){
+                when(pokemon.types.first().name){
                     "steel" -> R.color.color_type_pokemon_steel_light
                     "water" -> R.color.color_type_pokemon_water_light
                     "bug" -> R.color.color_type_pokemon_bug_light

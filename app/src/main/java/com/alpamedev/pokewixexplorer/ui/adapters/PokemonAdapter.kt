@@ -1,4 +1,4 @@
-package com.alpamedev.pokewixexplorer.adapters
+package com.alpamedev.pokewixexplorer.ui.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -6,15 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.alpamedev.domain.pokemon.Pokemon
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.alpamedev.pokewixexplorer.OnClickListener
+import com.alpamedev.pokewixexplorer.ui.listeners.OnClickListener
 import com.alpamedev.pokewixexplorer.R
 import com.alpamedev.pokewixexplorer.databinding.PokemonRowItemBinding
-import com.alpamedev.pokewixexplorer.models.PokemonResponse
 import com.alpamedev.pokewixexplorer.toNamePokemonDisplay
 
-class PokemonAdapter(private val dataSet:MutableList<PokemonResponse>, private var listener: OnClickListener) :
+class PokemonAdapter(private val dataSet:MutableList<Pokemon>, private var listener: OnClickListener) :
     RecyclerView.Adapter<PokemonAdapter.ViewHolder>(){
 
     private lateinit var mContext: Context
@@ -25,7 +25,7 @@ class PokemonAdapter(private val dataSet:MutableList<PokemonResponse>, private v
      inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
          val binding = PokemonRowItemBinding.bind(view)
 
-        fun setListener(pokemon: PokemonResponse){
+        fun setListener(pokemon: Pokemon){
             binding.root.setOnClickListener {
                 listener.onItemPokemonClick(pokemon)
             }

@@ -1,4 +1,4 @@
-package com.alpamedev.pokewixexplorer.profile
+package com.alpamedev.pokewixexplorer.ui.profile
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

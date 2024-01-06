@@ -1,4 +1,4 @@
-package com.alpamedev.pokewixexplorer.adapters
+package com.alpamedev.pokewixexplorer.ui.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.alpamedev.domain.pokemon.Stat
 import com.alpamedev.pokewixexplorer.R
 import com.alpamedev.pokewixexplorer.databinding.PokemonStatRowItemBinding
-import com.alpamedev.pokewixexplorer.models.Stat
 
 class PokemonStatAdapter(private val dataSet:MutableList<Stat>):RecyclerView.Adapter<PokemonStatAdapter.ViewHolder>() {
 
@@ -30,11 +30,11 @@ class PokemonStatAdapter(private val dataSet:MutableList<Stat>):RecyclerView.Ada
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder){
-            mBinding.tvNameStatPokemon.text = dataSet[position].stat.name.uppercase()
+            mBinding.tvNameStatPokemon.text = dataSet[position].name.uppercase()
             mBinding.pbStatPokemon.apply {
                 progress = dataSet[position].baseStat.toInt() / 3
                 setIndicatorColor(
-                    when(dataSet[position].stat.name){
+                    when(dataSet[position].name){
                         "hp" -> ContextCompat.getColor(mContext, R.color.color_stat_pokemon_hp)
                         "attack" -> ContextCompat.getColor(mContext, R.color.color_stat_pokemon_attack)
                         "defense" -> ContextCompat.getColor(mContext, R.color.color_stat_pokemon_defense)

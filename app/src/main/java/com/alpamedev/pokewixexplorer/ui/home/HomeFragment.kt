@@ -1,4 +1,4 @@
-package com.alpamedev.pokewixexplorer.home
+package com.alpamedev.pokewixexplorer.ui.home
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -9,12 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.alpamedev.pokewixexplorer.OnClickListener
-import com.alpamedev.pokewixexplorer.adapters.GenerationAdapter
-import com.alpamedev.pokewixexplorer.adapters.PokemonAdapter
+import com.alpamedev.domain.Base
+import com.alpamedev.domain.generation.Generation
+import com.alpamedev.domain.pokemon.Pokemon
+import com.alpamedev.pokewixexplorer.ui.listeners.OnClickListener
+import com.alpamedev.pokewixexplorer.ui.adapters.GenerationAdapter
+import com.alpamedev.pokewixexplorer.ui.adapters.PokemonAdapter
 import com.alpamedev.pokewixexplorer.databinding.FragmentHomeBinding
-import com.alpamedev.pokewixexplorer.dialogs.PokemonDetailDialog
-import com.alpamedev.pokewixexplorer.models.*
+import com.alpamedev.pokewixexplorer.ui.dialogs.PokemonDetailDialog
 import kotlinx.coroutines.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -40,10 +42,10 @@ class HomeFragment : Fragment(), OnClickListener {
 
     private lateinit var mGenerationAdapter: GenerationAdapter
     private lateinit var mLayoutManager:LinearLayoutManager
-    private var generations: MutableList<ResultGeneration> = mutableListOf()
+    private var generations: MutableList<Generation> = mutableListOf()
 
 
-    private var pokemons: MutableList<PokemonResponse> = mutableListOf()
+    private var pokemons: MutableList<Pokemon> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -130,12 +132,12 @@ class HomeFragment : Fragment(), OnClickListener {
             }
     }
 
-    override fun onItemPokemonClick(pokemon: PokemonResponse) {
+    override fun onItemPokemonClick(pokemon: Pokemon) {
         //Toast.makeText(requireContext(),"Item: "+pokemon.name,Toast.LENGTH_SHORT).show()
         PokemonDetailDialog(pokemon).show(requireActivity().supportFragmentManager,"MyDialog")
     }
 
-    override fun onItemGenerationClick(generation: ResultGeneration) {
+    override fun onItemGenerationClick(generation: Generation) {
         mViewModel.onItemGenerationClick(generation)
     }
 }
