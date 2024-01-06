@@ -5,12 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.alpamedev.domain.pokemon.Pokemon
 import com.alpamedev.usecases.GetPokemonUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SearchViewModel(private val pokemonUseCase: GetPokemonUseCase):ViewModel() {
+@HiltViewModel
+class SearchViewModel @Inject constructor(private val pokemonUseCase: GetPokemonUseCase): ViewModel() {
 
     private val _pokemon = MutableLiveData<Pokemon?>(null)
     val pokemon: LiveData<Pokemon?> = _pokemon

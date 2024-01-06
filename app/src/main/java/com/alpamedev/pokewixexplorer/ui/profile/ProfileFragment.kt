@@ -6,11 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.alpamedev.pokewixexplorer.R
 import com.alpamedev.pokewixexplorer.databinding.FragmentProfileBinding
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
+import dagger.hilt.android.AndroidEntryPoint
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,13 +23,14 @@ private const val ARG_PARAM2 = "param2"
  * Use the [ProfileFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+@AndroidEntryPoint
 class ProfileFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
     private lateinit var mBinding: FragmentProfileBinding
-    private lateinit var mViewModel : ProfileViewModel
+    private val mViewModel : ProfileViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,7 +67,6 @@ class ProfileFragment : Fragment() {
     }
 
     private fun setUpViewModel() {
-        mViewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
         mViewModel.user.value = FirebaseAuth.getInstance()
 
         mViewModel.user.observe(viewLifecycleOwner){

@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alpamedev.domain.Base
@@ -17,6 +17,7 @@ import com.alpamedev.pokewixexplorer.ui.adapters.GenerationAdapter
 import com.alpamedev.pokewixexplorer.ui.adapters.PokemonAdapter
 import com.alpamedev.pokewixexplorer.databinding.FragmentHomeBinding
 import com.alpamedev.pokewixexplorer.ui.dialogs.PokemonDetailDialog
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -29,13 +30,14 @@ private const val ARG_PARAM2 = "param2"
  * Use the [HomeFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+@AndroidEntryPoint
 class HomeFragment : Fragment(), OnClickListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
     private lateinit var mBinding: FragmentHomeBinding
-    private lateinit var mViewModel: HomeViewModel
+    private val mViewModel: HomeViewModel by viewModels()
 
     private lateinit var mPokemonAdapter: PokemonAdapter
     private lateinit var mGridLayout: GridLayoutManager
@@ -78,8 +80,6 @@ class HomeFragment : Fragment(), OnClickListener {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun setUpViewModel() {
-        mViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
-
         mViewModel.pokemonList.observe(viewLifecycleOwner){
             pokemons.clear()
             pokemons.addAll(it)

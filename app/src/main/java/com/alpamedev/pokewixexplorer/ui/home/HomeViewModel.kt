@@ -7,9 +7,12 @@ import com.alpamedev.domain.generation.Generation
 import com.alpamedev.domain.pokemon.Pokemon
 import com.alpamedev.usecases.GetGenerationUseCase
 import com.alpamedev.usecases.GetPokemonUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
+import javax.inject.Inject
 
-class HomeViewModel(
+@HiltViewModel
+class HomeViewModel @Inject constructor(
     private val pokemonUseCase: GetPokemonUseCase,
     private val generationUseCase: GetGenerationUseCase
 ): ViewModel() {
