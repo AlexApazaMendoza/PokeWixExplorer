@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id 'com.google.gms.google-services'
     id 'com.google.firebase.crashlytics'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -101,4 +102,8 @@ dependencies {
 
     //Ads Admob
     implementation 'com.google.android.gms:play-services-ads:21.4.0'
+
+    //hilt
+    implementation "com.google.dagger:hilt-android:2.44"
+    kapt "com.google.dagger:hilt-compiler:2.44"
 }
