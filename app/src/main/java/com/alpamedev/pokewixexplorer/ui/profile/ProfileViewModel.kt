@@ -9,4 +9,8 @@ class ProfileViewModel : ViewModel() {
     private val _user = MutableLiveData<FirebaseAuth>(null)
     val user : MutableLiveData<FirebaseAuth> = _user
 
+    fun updateUser(user: FirebaseAuth) {
+        _user.value = user
+    }
+
 }

@@ -58,21 +58,26 @@ class ProfileFragment : Fragment() {
     private fun setUpViews() {
         mBinding.btnLogout.setOnClickListener {
             context?.let {
-                AuthUI.getInstance().signOut(it)
-                    .addOnCompleteListener {
-                        Toast.makeText(context,getString(R.string.logout_text_message),Toast.LENGTH_SHORT).show()
-                    }
+                if (mViewModel.user.value?.currentUser != null) {
+                    AuthUI.getInstance().signOut(it)
+                        .addOnCompleteListener {
+                            Toast.makeText(context,getString(R.string.logout_text_message),Toast.LENGTH_SHORT).show()
+                        }
+                }
             }
         }
     }
 
-    private fun setUpViewModel() {
-        mViewModel.user.value = FirebaseAuth.getInstance()
+    override fun onResume() {
+        super.onResume()
+        mViewModel.updateUser(FirebaseAuth.getInstance())
+    }
 
+    private fun setUpViewModel() {
         mViewModel.user.observe(viewLifecycleOwner){
             if(it != null){
-                mBinding.tvUserName.text = it.currentUser?.displayName
-                mBinding.tvUserEmail.text = it.currentUser?.email
+                mBinding.tvUserName.text = it.currentUser?.displayName ?: "Visitante"
+                mBinding.tvUserEmail.text = it.currentUser?.email ?: ""
             }
         }
     }

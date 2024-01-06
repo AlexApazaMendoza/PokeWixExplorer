@@ -42,16 +42,6 @@ class MainActivity : AppCompatActivity() {
         setUpAuth()
     }
 
-    override fun onResume() {
-        super.onResume()
-        mFirebaseAuth?.addAuthStateListener( mAuthListener )
-    }
-
-    override fun onPause() {
-        super.onPause()
-        mFirebaseAuth?.removeAuthStateListener( mAuthListener )
-    }
-
     private fun setUpAuth() {
         mFirebaseAuth = FirebaseAuth.getInstance()
         mAuthListener = FirebaseAuth.AuthStateListener {
@@ -71,6 +61,7 @@ class MainActivity : AppCompatActivity() {
                 loadAds()
             }
         }
+        mFirebaseAuth?.addAuthStateListener( mAuthListener )
     }
 
     private fun loadAds() {
@@ -88,7 +79,7 @@ class MainActivity : AppCompatActivity() {
             loadAds()
             // ...
         } else {
-            finish()
+            Toast.makeText(this, "Estás entrando como visitante", Toast.LENGTH_SHORT).show()
             // Sign in failed. If response is null the user canceled the
             // sign-in flow using the back button. Otherwise check
             // response.getError().getErrorCode() and handle the error.
