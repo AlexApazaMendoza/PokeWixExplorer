@@ -1,4 +1,4 @@
-package com.alpamedev.pokewixexplorer.retrofit
+package com.alpamedev.pokewixexplorer.framework.db
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -11,7 +11,7 @@ object RetrofitConfig {
         HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     }
 
-    private val retrofit : Retrofit by lazy {
+    private val retrofit: Retrofit by lazy {
         Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl("https://pokeapi.co/api/v2/")
@@ -19,10 +19,7 @@ object RetrofitConfig {
             .build()
     }
 
-    /***
-     * Interfaces
-     */
-    val pokemonService : PokemonService by lazy {
+    val pokemonService: PokemonService by lazy {
         retrofit.create(PokemonService::class.java)
     }
 }

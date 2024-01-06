@@ -1,6 +1,9 @@
-package com.alpamedev.pokewixexplorer.retrofit
+package com.alpamedev.pokewixexplorer.framework.db
 
-import com.alpamedev.pokewixexplorer.models.*
+import com.alpamedev.pokewixexplorer.framework.db.entities.GenerationListResponse
+import com.alpamedev.pokewixexplorer.framework.db.entities.GenerationResponse
+import com.alpamedev.pokewixexplorer.framework.db.entities.PokemonResponse
+import com.alpamedev.pokewixexplorer.framework.db.entities.PokemonSpecieResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -8,19 +11,17 @@ import retrofit2.http.Path
 interface PokemonService {
 
     /*@GET("pokemon/")
-    suspend fun searchPokemonList(): Response<PokemonListResponse>
+    suspend fun searchPokemonList(): Response<PokemonListResponse>*/
 
-    @GET("pokemon")
+    /*@GET("pokemon")
     suspend fun searchPokemonListParams(@Query("offset") offset:Int,@Query("limit") limit:Int): Response<PokemonListResponse>*/
 
-    //Pokemons
     @GET("pokemon/{id}/")
     suspend fun searchPokemonById(@Path("id") id:Int): Response<PokemonResponse>
 
     @GET("pokemon/{name}/")
     suspend fun searchPokemonByName(@Path("name") name:String): Response<PokemonResponse>
 
-    //Generations
     @GET("generation/")
     suspend fun searchGenerationList(): Response<GenerationListResponse>
 
@@ -30,7 +31,6 @@ interface PokemonService {
     @GET("generation/{id}/")
     suspend fun searchGenerationById(@Path("id") id:Int): Response<GenerationResponse>
 
-    //Species
     @GET("pokemon-species/{id}/")
     suspend fun searchPokemonSpeciesById(@Path("id") id:Int): Response<PokemonSpecieResponse>
 
