@@ -1,4 +1,4 @@
-package com.alpamedev.pokewixexplorer.framework.db.entities
+package com.alpamedev.pokewixexplorer.framework.db.api.entities
 
 import com.alpamedev.domain.pokemon.Ability
 import com.alpamedev.domain.pokemon.Move

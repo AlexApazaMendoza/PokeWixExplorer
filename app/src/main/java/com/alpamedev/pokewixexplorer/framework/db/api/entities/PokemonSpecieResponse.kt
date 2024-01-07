@@ -1,4 +1,4 @@
-package com.alpamedev.pokewixexplorer.framework.db.entities
+package com.alpamedev.pokewixexplorer.framework.db.api.entities
 
 import com.google.gson.annotations.SerializedName
 

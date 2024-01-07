@@ -1,4 +1,4 @@
-package com.alpamedev.data.datasources
+package com.alpamedev.data.datasources.remote
 
 import com.alpamedev.domain.generation.Generation
 import com.alpamedev.domain.generation.ResultGeneration

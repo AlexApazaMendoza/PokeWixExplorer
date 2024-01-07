@@ -1,13 +1,13 @@
 package com.alpamedev.pokewixexplorer.framework.db.remote
 
-import com.alpamedev.data.datasources.GenerationRemoteDataSource
-import com.alpamedev.domain.Base
+import com.alpamedev.data.datasources.remote.GenerationRemoteDataSource
 import com.alpamedev.domain.generation.Generation
 import com.alpamedev.domain.generation.ResultGeneration
-import com.alpamedev.pokewixexplorer.framework.db.RetrofitConfig
+import com.alpamedev.pokewixexplorer.framework.db.api.RetrofitConfig
 import javax.inject.Inject
 
-class GenerationRemoteDB @Inject constructor(private val retrofitConfig: RetrofitConfig): GenerationRemoteDataSource {
+class GenerationRemoteDB @Inject constructor(private val retrofitConfig: RetrofitConfig):
+    GenerationRemoteDataSource {
     override suspend fun requestGenerationList(): List<Generation> {
         val response = retrofitConfig.pokemonService.searchGenerationList()
         if (response.isSuccessful) {

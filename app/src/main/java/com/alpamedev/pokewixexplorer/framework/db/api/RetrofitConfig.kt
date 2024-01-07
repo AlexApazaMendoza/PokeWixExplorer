@@ -1,4 +1,4 @@
-package com.alpamedev.pokewixexplorer.framework.db
+package com.alpamedev.pokewixexplorer.framework.db.api
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

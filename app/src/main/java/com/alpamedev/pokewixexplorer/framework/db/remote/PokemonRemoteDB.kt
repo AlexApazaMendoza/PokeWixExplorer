@@ -1,11 +1,12 @@
 package com.alpamedev.pokewixexplorer.framework.db.remote
 
-import com.alpamedev.data.datasources.PokemonRemoteDataSource
+import com.alpamedev.data.datasources.remote.PokemonRemoteDataSource
 import com.alpamedev.domain.pokemon.Pokemon
-import com.alpamedev.pokewixexplorer.framework.db.RetrofitConfig
+import com.alpamedev.pokewixexplorer.framework.db.api.RetrofitConfig
 import javax.inject.Inject
 
-class PokemonRemoteDB @Inject constructor(private val retrofitConfig: RetrofitConfig): PokemonRemoteDataSource {
+class PokemonRemoteDB @Inject constructor(private val retrofitConfig: RetrofitConfig):
+    PokemonRemoteDataSource {
     override suspend fun requestPokemon(id: Int): Pokemon? {
         val response = retrofitConfig.pokemonService.searchPokemonById(id)
         if (response.isSuccessful) {

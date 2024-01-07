@@ -1,9 +1,9 @@
-package com.alpamedev.pokewixexplorer.framework.db
+package com.alpamedev.pokewixexplorer.framework.db.api
 
-import com.alpamedev.pokewixexplorer.framework.db.entities.GenerationListResponse
-import com.alpamedev.pokewixexplorer.framework.db.entities.GenerationResponse
-import com.alpamedev.pokewixexplorer.framework.db.entities.PokemonResponse
-import com.alpamedev.pokewixexplorer.framework.db.entities.PokemonSpecieResponse
+import com.alpamedev.pokewixexplorer.framework.db.api.entities.GenerationListResponse
+import com.alpamedev.pokewixexplorer.framework.db.api.entities.GenerationResponse
+import com.alpamedev.pokewixexplorer.framework.db.api.entities.PokemonResponse
+import com.alpamedev.pokewixexplorer.framework.db.api.entities.PokemonSpecieResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
